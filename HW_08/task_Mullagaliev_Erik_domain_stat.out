@@ -1,0 +1,71 @@
+-------------------------------------------
+Batch: 1
+-------------------------------------------
++---------------------+----+------+
+|domain               |view|unique|
++---------------------+----+------+
+|news.rambler.ru      |5   |5     |
+|www.svyaznoy.ru      |2   |2     |
+|yandex.ru            |2   |2     |
+|m.rambler.ru         |2   |2     |
+|proverit-tirazh.com  |1   |1     |
+|www.tourdom.ru       |1   |1     |
+|rus-oge.sdamgia.ru   |1   |1     |
+|m.allboxing.ru       |1   |1     |
+|football.kulichki.net|1   |1     |
+|smi2.ru              |1   |1     |
++---------------------+----+------+
+
+-------------------------------------------
+Batch: 2
+-------------------------------------------
++---------------------+----+------+
+|domain               |view|unique|
++---------------------+----+------+
+|news.rambler.ru      |10  |9     |
+|www.championat.com   |5   |5     |
+|www.rambler.ru       |4   |4     |
+|m.news.yandex.ru     |3   |3     |
+|life.ru              |3   |3     |
+|finobzor.ru          |3   |3     |
+|tophotels.ru         |3   |3     |
+|ria.ru               |2   |2     |
+|football.kulichki.net|2   |2     |
+|smi2.ru              |2   |2     |
++---------------------+----+------+
+
+-------------------------------------------
+Batch: 3
+-------------------------------------------
++------------------+----+------+
+|domain            |view|unique|
++------------------+----+------+
+|news.rambler.ru   |12  |11    |
+|www.championat.com|5   |5     |
+|www.yaplakal.com  |5   |5     |
+|tophotels.ru      |5   |5     |
+|ria.ru            |4   |4     |
+|www.rambler.ru    |4   |4     |
+|rutube.ru         |4   |4     |
+|life.ru           |3   |3     |
+|m.rambler.ru      |3   |3     |
+|lenta.ru          |3   |3     |
++------------------+----+------+
+
+-------------------------------------------
+Batch: 4
+-------------------------------------------
++------------------+----+------+
+|domain            |view|unique|
++------------------+----+------+
+|news.rambler.ru   |17  |16    |
+|yandex.ru         |6   |6     |
+|www.championat.com|5   |5     |
+|smi2.ru           |5   |5     |
+|topwar.ru         |5   |5     |
+|www.yaplakal.com  |5   |5     |
+|tophotels.ru      |5   |5     |
+|www.exist.ru      |4   |4     |
+|life.ru           |4   |4     |
+|m.lenta.ru        |4   |4     |
++------------------+----+------+

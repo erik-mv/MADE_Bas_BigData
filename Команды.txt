@@ -1,0 +1,11 @@
+Доступ на brain-client3, на brain-client вы не попадете. Сделано умышленно
+
+ssh -L 50070:адрес:50070 -L 8088:адрес:8088 -L 8082:localhost:8082 логин
+
+PYSPARK_DRIVER_PYTHON=jupyter PYSPARK_PYTHON=python3.6 PYSPARK_DRIVER_PYTHON_OPTS='notebook --ip=0.0.0.0 --NotebookApp.token= --port=8085' pyspark --conf spark.ui.port=8090 --driver-memory 512m --master yarn --num-executors 2 --executor-cores 1
+
+hdfs dfs -cat data/ids/partA_1.txt | tr ' ' '\n' | sort | uniq -c
+
+
+cat ./ids_part/*.txt | ./mapper.py | sort -k1,1 | ./reducer.py
+bash run.sh /data/ids hw2_mr_data_ids test.txt

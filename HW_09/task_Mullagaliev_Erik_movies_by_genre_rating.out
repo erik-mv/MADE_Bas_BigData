@@ -1,0 +1,3 @@
+ system.min(rating) | system.avg(rating) | system.max(rating)
+--------------------+--------------------+--------------------
+                0.5 |            2.78903 |                  5

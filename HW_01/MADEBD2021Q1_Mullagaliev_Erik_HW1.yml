@@ -1,0 +1,70 @@
+beginner.how_many_items_in_hdfs:
+    stdin: "9"
+intermediate.hdfs_list_recursively:
+    stdin: "hdfs dfs -ls -R /data/wiki"
+intermediate.hdfs_list_recursively_human_readable:
+    stdin: "hdfs dfs -ls -h -R /data/wiki"
+intermediate.hdfs_file_replication_factor:
+    stdin: "3"
+intermediate.hdfs_folder_replication_factor:
+    stdin: "0"
+intermediate.hdfs_describe_size:
+    stdin: "actual"
+intermediate.hdfs_cumulative_size:
+    stdin: "hdfs dfs -du -s -h /data/wiki"
+intermediate.hdfs_create_folder:
+    stdin: "hdfs dfs -mkdir erik_folder"
+intermediate.hdfs_create_nested_folder:
+    stdin: "hdfs dfs -mkdir -p erik_folder2/a/b"
+intermediate.hdfs_remove_nested_folders:
+    stdin: "hdfs dfs -rm -r erik_folder2"
+intermediate.hdfs_trash_behavior:
+    # Это директория в которую померятся удаленные файлы, после опредеелнныхсобытий фалы из trash удалятся
+    stdin: "hdfs dfs -rm -r -skipTrash erik_folder2"
+intermediate.hdfs_create_empty_file:
+    stdin: "hdfs dfs -touchz erik_file_empty.txt"
+intermediate.hdfs_create_small_file:
+    stdin: |-
+        "1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111\n2222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222\n3333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333\n4444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444\n5555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555\n6666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666\n7777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777\n8888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888\n7777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777\n6666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666\n5555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555\n4444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444\n3333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333\n2222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222\n1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111" > erik_file.txt
+        hdfs dfs -put erik_file.txt
+intermediate.hdfs_output_file:
+    stdin: "hdfs dfs -cat erik_file.txt"
+intermediate.hdfs_output_file_end:
+    stdin: "hdfs dfs -tail erik_file.txt"
+intermediate.hdfs_output_file_start:
+    stdin: "hdfs dfs -cat erik_file.txt | head"
+intermediate.hdfs_tail_vs_unix_tail:
+    stdin: "tail -c 1024 erik_file.txt"
+intermediate.hdfs_copy_file:
+    stdin: "hdfs dfs -cp erik_file.txt erik_copy.txt"
+intermediate.hdfs_move_file:
+    stdin: |-
+        hdfs dfs -mkdir erik_folder3
+        hdfs dfs -mv erik_text.txt erik_folder3/
+intermediate.hdfs_download_and_concatenate:
+    stdin: "hdfs dfs -getmerge erik_folder3/erik_text.txt erik_copy.txt erik_merge.txt"
+advanced.hdfs_set_file_replication:
+    # Как долго непонятно, быстро. Увеличение, по идеи, должно быть дольше, чем уменьшение 
+    stdin: |-
+        hdfs dfs -touchz erik_copy.txt
+        hdfs dfs -setrep 4 erik_copy.txt
+advanced.hdfs_get_files_and_block:
+    stdin: "hdfs fsck erik_copy.txt -files -blocks -locations"
+advanced.hdfs_get_block_information:
+    stdin: "hdfs fsck -blockId blk_1079538197"
+advanced.hdfs_dfs_architecture:
+    stdin: |-
+        hdfs fsck erik_copy.txt -files -blocks -locations
+        sudo -i -u hdfsuser
+        hdfs dfs -tail data/namenode_example/current/fsimage_0000000000030725661
+advanced.webhdfs_read_100B:
+    stdin: |-
+        curl -L "http://brain-master:50070/webhdfs/v1/backup_virtual/access_logs/big_log/access.log.2015-12-10?op=OPEN&length=100"
+advanced.webhdfs_curl_follow_redirects:
+    stdin: "curl -L 'http://brain-master:50070/webhdfs/v1/backup_virtual/access_logs/big_log/access.log.2015-12-10?op=OPEN&length=100'"
+advanced.webhdfs_get_file_detailed_information:
+    stdin: "curl 'http://brain-master:50070/webhdfs/v1/backup_virtual/access_logs/big_log/access.log.2015-12-10?op=GETFILESTATUS'"
+advanced.webhdfs_change_file_replication:
+    stdin: "curl -i -X PUT 'http://brain-master:50070/webhdfs/v1/user/mail_2021q1/erik_copy.txt?user.name=mail_2021q1&op=SETREPLICATION&replication=1'"
+advanced.webhdfs_append_to_file:
+    stdin: "curl -i -X POST -T erik_copy.txt 'http://brain-node2.bigdatateam.org:50075/webhdfs/v1/user/mail_2021q1/erik_copy.txt?user.name=mail_2021q1&op=APPEND&namenoderpcaddress=brain-master.bigdatateam.org:8020'"

@@ -1,0 +1,1 @@
+Потоковая обработка данных (Kafka, Spark Streaming)

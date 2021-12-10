@@ -1,0 +1,11 @@
+HADOOP_STREAMING_JAR=/usr/local/hadoop/share/hadoop/tools/lib/hadoop-streaming.jar
+INPUT_DIR=$1
+OUT_DIR=$2
+hdfs dfs -rm -r $OUT_DIR
+yarn jar $HADOOP_STREAMING_JAR \
+ -files reducer.sh \
+ -mapper "wc -l" \
+ -reducer "./reducer.sh" \
+ -numReduceTasks 1 \
+ -input $INPUT_DIR \
+ -output $OUT_DIR
